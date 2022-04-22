@@ -25,10 +25,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>jboss.web</groupId>
-            <artifactId>servlet-api</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>com.h2database</groupId>
