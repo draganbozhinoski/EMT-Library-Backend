@@ -1,6 +1,9 @@
 package mk.ukim.finki.emt.library.javaApplication.api;
 
+import mk.ukim.finki.emt.library.javaApplication.api.request.BookRequest;
+import mk.ukim.finki.emt.library.javaApplication.domain.Author;
 import mk.ukim.finki.emt.library.javaApplication.domain.Book;
+import mk.ukim.finki.emt.library.javaApplication.service.AuthorsService;
 import mk.ukim.finki.emt.library.javaApplication.service.BooksService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,12 +12,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/books")
-@CrossOrigin(origins = "https://emt-library-frontend-196060.herokuapp.com/")
+@CrossOrigin(origins = "http://localhost:3000")
 public class BooksController {
     private final BooksService booksService;
-
-    public BooksController(BooksService booksService) {
+    private final AuthorsService authorsService;
+    public BooksController(BooksService booksService, AuthorsService authorsService) {
         this.booksService = booksService;
+        this.authorsService = authorsService;
     }
 
     @GetMapping
@@ -35,5 +39,22 @@ public class BooksController {
     @DeleteMapping("/{id}/delete")
     public void deleteBook(@PathVariable Long id) {
         booksService.deleteBook(id);
+    }
+    @GetMapping("/authors")
+    public List<Author> findAllAuthors() {
+        return authorsService.findAll();
+    }
+    @PostMapping("/save")
+    public void saveBook(@RequestBody BookRequest bookRequest) {
+        booksService.saveBook(bookRequest.getName(),bookRequest.getAvailableCopies(),authorsService.findById(bookRequest.getAuthor()),bookRequest.getCategory());
+    }
+    @GetMapping("/{id}")
+    public Book findById(@PathVariable Long id) {
+        return booksService.findById(id);
+    }
+    @PutMapping("/{id}/update")
+    public void updateBook(@PathVariable Long id,
+                           @RequestBody BookRequest bookRequest) {
+        booksService.updateBook(id,bookRequest.getName(),bookRequest.getAvailableCopies(),authorsService.findById(bookRequest.getAuthor()),bookRequest.getCategory());
     }
 }

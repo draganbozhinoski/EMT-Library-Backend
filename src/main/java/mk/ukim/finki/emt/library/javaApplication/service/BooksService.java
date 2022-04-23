@@ -1,6 +1,8 @@
 package mk.ukim.finki.emt.library.javaApplication.service;
 
+import mk.ukim.finki.emt.library.javaApplication.domain.Author;
 import mk.ukim.finki.emt.library.javaApplication.domain.Book;
+import mk.ukim.finki.emt.library.javaApplication.domain.enums.Category;
 import mk.ukim.finki.emt.library.javaApplication.repository.BooksRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -30,10 +32,17 @@ public class BooksService {
             booksRepository.updateCopies(bookId, copies);
         }
     }
+    @Transactional
+    public void updateBook(Long id,String name,Integer availableCopies, Author author,Category category) {
+        booksRepository.updateBook(id,name,availableCopies,author,category);
+    }
     public void deleteBook(Long bookId) {
         Optional<Book> book = booksRepository.findById(bookId);
         if(book.isPresent()) {
             booksRepository.delete(booksRepository.findById(bookId).get());
         }
+    }
+    public void saveBook(String name, Integer availableCopies, Author author, Category category) {
+        booksRepository.save(new Book(name,availableCopies,category,author));
     }
 }

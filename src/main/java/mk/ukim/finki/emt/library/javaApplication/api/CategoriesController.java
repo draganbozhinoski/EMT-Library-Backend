@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/categories")
-@CrossOrigin(origins = "https://emt-library-frontend-196060.herokuapp.com/")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CategoriesController {
     @GetMapping
     public List<Category> getAllCategories() {
