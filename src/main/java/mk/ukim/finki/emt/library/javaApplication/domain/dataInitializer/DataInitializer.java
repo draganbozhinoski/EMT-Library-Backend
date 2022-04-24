@@ -43,8 +43,13 @@ public class DataInitializer {
         authorsRepository.save(author4);
         booksRepository.save(new Book("Harry Potter 1",15,Category.BIOGRAPHY,author1));
         booksRepository.save(new Book("Harry Potter 2",20,Category.CLASSICS,author2));
-        booksRepository.save(new Book("Harry Potter 2.2",35,Category.NOVEL,author2));
-        booksRepository.save(new Book("Harry Potter 3",25,Category.DRAMA,author3));
-        booksRepository.save(new Book("Harry Potter 4",30,Category.FANTASY,author4));
+        booksRepository.save(new Book("Harry Potter 3",35,Category.NOVEL,author2));
+        booksRepository.save(new Book("Harry Potter 4",25,Category.DRAMA,author3));
+        booksRepository.save(new Book("Harry Potter 5",30,Category.FANTASY,author4));
+        booksRepository.save(new Book("Harry Potter 1.1",15,Category.BIOGRAPHY,author1));
+        booksRepository.save(new Book("Harry Potter 2.2",20,Category.CLASSICS,author2));
+        booksRepository.save(new Book("Harry Potter 3.3",35,Category.NOVEL,author2));
+        booksRepository.save(new Book("Harry Potter 4.4",25,Category.DRAMA,author3));
+        booksRepository.save(new Book("Harry Potter 5.5",30,Category.FANTASY,author4));
     }
 }
